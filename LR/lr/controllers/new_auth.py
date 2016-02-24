@@ -35,19 +35,20 @@ class newAuthController(BaseController):
          """
          userDB=self.__getDB__()
          if 'password' in request.POST:
-            rec=userDB.save({'_id':request.POST['_id'],
-                             'name':request.POST['email'],
+            rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
+                             'name':request.POST['name'],
                              'roles':['browserid'],
                              'browserid':True,
-                             'oauth':{'consumer_keys':{request.POST['email']:request.POST['consumer_key']},
+                             'password':request.POST['password'],
+                             'oauth':{'consumer_keys':{request.POST['name']:request.POST['consumer_key']},
                                       'tokens':{'node_sign_token':request.POST['node_sign_token']}}})
          else:
-             rec=userDB.save({'_id':request.POST['_id'],
-                              'name':request.POST['email'],
-                              'roles':['browserid'],
-                              'browserid':True,
-                              'oauth':{'consumer_keys':{request.POST['email']:request.POST['consumer_key']},
-                                       'tokens':{'node_sign_token':request.POST['node_sign_token']}}})
+            rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
+                             'name':request.POST['name'],
+                             'roles':['browserid'],
+                             'browserid':True,
+                             'oauth':{'consumer_keys':{request.POST['name']:request.POST['consumer_key']},
+                                      'tokens':{'node_sign_token':request.POST['node_sign_token']}}})
 
 
 
