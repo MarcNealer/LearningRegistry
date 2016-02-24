@@ -38,6 +38,7 @@ class newAuthController(BaseController):
             rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
                              'name':request.POST['name'],
                              'roles':['browserid'],
+                             'type':'user',
                              'browserid':True,
                              'password':request.POST['password'],
                              'oauth':{'consumer_keys':{request.POST['name']:request.POST['consumer_key']},
@@ -46,6 +47,7 @@ class newAuthController(BaseController):
             rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
                              'name':request.POST['name'],
                              'roles':['browserid'],
+                             'type':'user',
                              'browserid':True,
                              'oauth':{'consumer_keys':{request.POST['name']:request.POST['consumer_key']},
                                       'tokens':{'node_sign_token':request.POST['node_sign_token']}}})
