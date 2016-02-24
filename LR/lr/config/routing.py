@@ -43,7 +43,7 @@ def make_map(config):
     map.resource('filter', 'filters', controller='contrib/filters', 
         path_prefix='/contrib', name_prefix='contrib_')
     map.resource("register","register")
-    map.resource("newauth", controller="new_auth")
+    map.connect("/newauth/{action}", controller="new_auth")
     map.resource('pubkey', 'pubkey')
     mapResource('lr.status.docid', 'status','status')
     mapResource('lr.distribute.docid','distribute','distribute')
