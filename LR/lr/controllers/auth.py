@@ -35,11 +35,23 @@ class AuthController(BaseController):
 
 
     def index(self):
-        response.headers['Content-Type'] = 'text/html;charset=utf-8'
         # Return a rendered template
-        response.status_int = 301
-        response.headers['Location'] = appConfig['lr.oauth.signup']
-        return "Moved: %s" % appConfig['lr.oauth.signup']
+
+        def get():
+            response.headers['Content-Type'] = 'text/html;charset=utf-8'
+            return render("newauth.mako")
+        def post():
+            return "POST"
+        switch = {
+            "GET":get,
+            "POST":post
+        }
+        return switch[request.method]()
+        #response.headers['Content-Type'] = 'text/html;charset=utf-8'
+        # Return a rendered template
+        #response.status_int = 301
+        #response.headers['Location'] = appConfig['lr.oauth.signup']
+        #return "Moved: %s" % appConfig['lr.oauth.signup']
         # return render('/oauth.html')
         # or, return a string
         # return 'Hello World'
