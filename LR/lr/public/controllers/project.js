@@ -99,7 +99,7 @@ main.controller('LoginCtrl', function($scope, $auth,$http) {
     };
 
     $scope.sendToServer = function(useremail) {
-        payload = {name: $scope.useremail, node_sign_token: $scope.generateSecret(32), consumer_key: $scope.generateSecret(32)};
+        payload = "name=" + encodeURIComponent($scope.useremail) + "&node_sign_token="+encodeURIComponent($scope.generateSecret(32))+ "&consumer_key=" + encodeURIComponent($scope.generateSecret(32));
         $scope.payload = payload;
         $http.post('/newauth/', $scope.payload,{})
             .success(function(data) {
