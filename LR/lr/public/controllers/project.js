@@ -6,6 +6,8 @@ var main = angular.module('main',['satellizer'])
   .config(function($authProvider) {
     $authProvider.facebook({
       clientId: '573549156130752',
+      url: 'auth',
+      redirectUri: window.location.origin + '/auth/',
       responseType: 'token'
     });
 
