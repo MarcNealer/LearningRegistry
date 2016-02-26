@@ -34,7 +34,6 @@ class NewauthController(BaseController):
          :return:
          """
          userDB=self.__getDB__()
-         print(request.json_body)
          if 'password' in request.POST:
             rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
                              'name':request.POST['name'],
