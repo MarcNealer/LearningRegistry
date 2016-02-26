@@ -18,7 +18,7 @@ appConfig = config['app_conf']
 #Default couchdb server that use by all the models when none is provided.
 defaultCouchServer =  couchdb.Server(appConfig['couchdb.url.dbadmin'])
 user_model = appConfig['couchdb.db.users']
-class NewAuthController(BaseController):
+class NewauthController(BaseController):
     def __before__(self):
         response.headers['Content-Type'] = 'application/json;charset=utf-8'
     def __getDB__(self):
