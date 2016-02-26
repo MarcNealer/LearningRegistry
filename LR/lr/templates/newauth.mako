@@ -25,10 +25,6 @@
 <button ng-click="authenticate('facebook')">Sign in with facebook</button><br>
 <!-- ... -->
 
-<p>{{payload}}</p>
-<p>{{useremail}}</p>
-<p>{{results}}</p>
-<p>{{results.oauth.tokens}}</p>
 <p ng-repeat="(key, value) in results.oauth.consumer_keys">{{key}}{{value}}</p>
     <div class="msg"></div>
     <div ng-show="showdetails">
