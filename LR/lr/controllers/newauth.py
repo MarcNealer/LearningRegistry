@@ -54,4 +54,4 @@ class NewauthController(BaseController):
 
 
 
-         return json.dumps(rec)
+         return json.dumps(userDB[rec[0]])
