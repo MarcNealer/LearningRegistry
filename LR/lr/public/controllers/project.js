@@ -12,7 +12,8 @@ var main = angular.module('main',['satellizer'])
     $authProvider.google({
       url: 'auth',
       clientId: '736057767942-dcoohifkad202c7hsm74jhm2ctjrqrlr.apps.googleusercontent.com',
-      responseType: 'token'
+      responseType: 'token',
+      redirectUri: window.location.origin + '/auth/',
     });
 
     $authProvider.github({
