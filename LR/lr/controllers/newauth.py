@@ -34,24 +34,25 @@ class NewauthController(BaseController):
          :return:
          """
          userDB=self.__getDB__()
-         if 'password' in request.POST:
-            rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
-                             'name':request.POST['name'],
-                             'roles':['browserid'],
-                             'type':'user',
-                             'browserid':True,
-                             'password':request.POST['password'],
-                             'oauth':{'consumer_keys':{request.POST['name']:request.POST['consumer_key']},
-                                      'tokens':{'node_sign_token':request.POST['node_sign_token']}}})
-         else:
-            rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
-                             'name':request.POST['name'],
-                             'roles':['browserid'],
-                             'type':'user',
-                             'browserid':True,
-                             'oauth':{'consumer_keys':{request.POST['name']:request.POST['consumer_key']},
-                                      'tokens':{'node_sign_token':request.POST['node_sign_token']}}})
+         try:
+             if 'password' in request.POST:
+                 rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
+                                  'name':request.POST['name'],
+                                  'roles':['browserid'],'type':'user','browserid':True,
+                                  'password':request.POST['password'],
+                                  'oauth':{'consumer_keys':{request.POST['name']:request.POST['consumer_key']},
+                                           'tokens':{'node_sign_token':request.POST['node_sign_token']}}})
+             else:
+                 rec=userDB.save({'_id':"org.couchdb.user:" + request.POST['name'],
+                                  'name':request.POST['name'],
+                                  'roles':['browserid'],
+                                  'type':'user',
+                                  'browserid':True,
+                                  'oauth':{'consumer_keys':{request.POST['name']:request.POST['consumer_key']},
+                                           'tokens':{'node_sign_token':request.POST['node_sign_token']}}})
+             return json.dumps(userDB[rec[0]])
+         except:
+             return json.dumps(userDB["org.couchdb.user:"+ request.POST['name']])
 
 
 
-         return json.dumps(userDB[rec[0]])
