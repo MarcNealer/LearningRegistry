@@ -101,7 +101,7 @@ main.controller('LoginCtrl', function($scope, $auth,$http) {
     $scope.sendToServer = function(useremail) {
         payload = "name=" + encodeURIComponent($scope.useremail) + "&node_sign_token="+encodeURIComponent($scope.generateSecret(32))+ "&consumer_key=" + encodeURIComponent($scope.generateSecret(32));
         $scope.payload = payload;
-        $http.post('/newauth/', $scope.payload,{})
+        $http.post('/newauth/', $scope.payload,{headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .success(function(data) {
                 $scope.results=data;
                 $scope.showdetails=true;
